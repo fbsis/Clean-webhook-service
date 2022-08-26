@@ -1,10 +1,12 @@
 import { DomainException } from '../exceptions'
 
 export class WebHookTimeout {
-  limitofTwoMinutes = 60 * 2;
+  limitofTwoMinutes = 60 * 2
+  defaultLimit = 5
 
   constructor (private readonly value: number) {
-    if (!Number.isInteger(value) || !this.isValid(value)) throw new DomainException('InvalidWebhookTimeout')
+    if (!value) this.value = this.defaultLimit
+    if (!Number.isInteger(this.value) || !this.isValid(this.value)) throw new DomainException('InvalidWebhookTimeout')
   }
 
   isValid (value: number): boolean {

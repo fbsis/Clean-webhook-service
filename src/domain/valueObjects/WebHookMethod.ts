@@ -10,7 +10,8 @@ export class WebHookMethod {
   ]
 
   constructor (private readonly value: string) {
-    if (!value || !this.isValid(value)) throw new DomainException('InvalidWebhookMethod')
+    if (!value) this.value = 'post'
+    if (!this.isValid(this.value)) throw new DomainException('InvalidWebhookMethod')
   }
 
   isValid (value: string): boolean {
