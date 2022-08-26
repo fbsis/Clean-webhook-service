@@ -13,11 +13,11 @@ export class EnvAdapter {
   static readonly databaseSettings: DatabaseSettings = {
     authentication: {
       type: process.env.DATABASE_TYPE ?? 'mysql',
-      host: process.env.DATABASE_TYPE ?? 'localhost',
+      host: process.env.DATABASE_HOST ?? 'localhost',
       port: 3306,
-      username: process.env.DATABASE_TYPE ?? 'root',
-      password: process.env.DATABASE_TYPE ?? 'asdasd',
-      database: process.env.DATABASE_TYPE ?? 'webhook'
+      username: process.env.DATABASE_USERNAME ?? 'root',
+      password: process.env.DATABASE_PASSWORD ?? 'asdasd',
+      database: process.env.DATABASE_DATABASE ?? 'webhook'
     }
   }
 
