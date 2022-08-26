@@ -4,7 +4,7 @@ export class WebHookTimeout {
   limitofTwoMinutes = 60 * 2;
 
   constructor (private readonly value: number) {
-    if (!value || !this.isValid(value)) throw new DomainException('InvalidWebhookTimeout')
+    if (!Number.isInteger(value) || !this.isValid(value)) throw new DomainException('InvalidWebhookTimeout')
   }
 
   isValid (value: number): boolean {

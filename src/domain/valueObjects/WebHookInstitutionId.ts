@@ -3,7 +3,7 @@ import { DomainException } from '../exceptions'
 
 export class WebHookInstitutionId {
   constructor (private readonly value: number) {
-    if (!value) throw new DomainException('InvalidWebhookInstitutionId')
+    if (!Number.isInteger(value)) throw new DomainException('InvalidWebhookInstitutionId')
   }
 
   toNumber (): number {

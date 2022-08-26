@@ -21,7 +21,7 @@ export class WebHook {
     return {
       id: this.id.toNumber(),
       institutionId: this.institutionId.toNumber(),
-      action: this.action.toString,
+      action: this.action.toString(),
       name: this.name.toString(),
       method: this.method.toString(),
       url: this.url.toString(),
