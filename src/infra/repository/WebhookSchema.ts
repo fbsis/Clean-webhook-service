@@ -12,27 +12,27 @@ export class WebhookSchema {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Column('number')
+  @Column('bigint')
   @Index()
   institutionId: string
 
-  @Column('text')
+  @Column('varchar')
   @Index()
   action: string
 
-  @Column('text')
+  @Column('varchar')
   name: string
 
-  @Column('text')
+  @Column('varchar')
   method: string
 
-  @Column('text')
+  @Column('varchar')
   url: string
 
-  @Column('text')
+  @Column('varchar')
   secret: string
 
-  @Column('number')
+  @Column('tinyint')
   timeout: string
 
   @Column('boolean')
