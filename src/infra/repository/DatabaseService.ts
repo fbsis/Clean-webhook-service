@@ -3,6 +3,7 @@ import 'reflect-metadata'
 import { DataSource } from 'typeorm'
 import { EnvAdapter } from '@/infra/configs/envs'
 import { WebhookSchema } from '@/infra/repository'
+import { InfraException } from '../exception'
 
 export type DatabaseSettings = {
   authentication: {
@@ -42,9 +43,14 @@ export class DatabaseService {
   }
 
   async Create (query: any): Promise<any> {
-    const datasource = await this.connection()
-    const InstitutionRepository = datasource.getRepository(WebhookSchema)
-    const saved = await InstitutionRepository.findOneBy(query)
-    return saved
+    try {
+      delete query.id
+      const datasource = await this.connection()
+      const dataRepository = datasource.getRepository(WebhookSchema)
+      const saved = await dataRepository.insert(query)
+      return saved
+    } catch (error) {
+      throw new InfraException('DatabaseServiceErrorCreateException', error)
+    }
   }
 }
