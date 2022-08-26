@@ -1,20 +1,78 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# Introduction
+Webhook Service
 
 # Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+Installation process
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+```bash
+docker-compose up
+```
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+To get inside container bash:
+
+```bash
+docker-compose run --rm app /bin/bash
+```
+
+## Code quality check
+
+Inside docker container app, run:
+
+1. To check typescript:
+
+```bash
+npm run type-check
+```
+
+2. To check linting and fix:
+
+```bash
+npm run lint:fix
+```
+
+3. To check for unused code:
+
+```bash
+npm run find-deadcode
+```
+
+4. To check dependencies:
+
+```bash
+npm run pkg-check
+```
+
+## Build
+
+```bash
+docker build --no-cache -t authorization-service . --build-arg NR_KEY="testnrkey" --build-arg APP_NAME="testappname"
+```
+
+### Run build
+
+```bash
+docker run -p 3000:3000 authorization-service
+```
+
+## Test
+
+Inside docker container app, run:
+
+1. Unit testing:
+
+```bash
+npm run test:unit
+```
+
+2. Integration testing:
+
+```bash
+npm run test:integration
+```
+
+3. Coverage testing:
+
+```bash
+npm run test:coverage
+```
