@@ -1,16 +1,19 @@
 import 'reflect-metadata'
 
 import {
-  Entity, PrimaryGeneratedColumn,
+  Entity,
   Column,
-  Index
+  Index,
+  PrimaryColumn
 } from 'typeorm'
 import { EnvAdapter } from '../configs/envs'
 
 @Entity(EnvAdapter.databaseSettings.authentication.database)
 export class WebhookSchema {
-  @PrimaryGeneratedColumn()
-  id: number
+  @Column('varchar')
+  @PrimaryColumn()
+  @Index()
+  id: string
 
   @Column('bigint')
   @Index()
@@ -36,5 +39,5 @@ export class WebhookSchema {
   timeout: string
 
   @Column('boolean')
-  status: string
+  status: boolean
 }
