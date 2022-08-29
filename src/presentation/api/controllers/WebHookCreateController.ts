@@ -7,7 +7,7 @@ import { CreateWebHookInteractor } from '@/domain/usecases'
 
 export class WebHookCreateController implements Controller {
   async handle (request: any): Promise<HttpResponse> {
-    const id = new WebHookId()
+    const id = new WebHookId('')
     const institutionId = new WebHookInstitutionId(request.institutionId)
     const action = new WebHookAction(request.action)
     const name = new WebHookName(request.name)
