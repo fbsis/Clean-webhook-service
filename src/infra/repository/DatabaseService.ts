@@ -4,6 +4,7 @@ import { DataSource } from 'typeorm'
 import { EnvAdapter } from '@/infra/configs/envs'
 import { WebhookSchema } from '@/infra/repository'
 import { InfraException } from '../exception'
+import crypto from 'crypto'
 
 export type DatabaseSettings = {
   authentication: {
@@ -42,9 +43,14 @@ export class DatabaseService {
     return AppDataSource
   }
 
-  async Create (query: any): Promise<any> {
+  private hashData (dataToHash: any): string {
+    const hash = crypto.createHash('md5').update(JSON.stringify(dataToHash)).digest('hex')
+    return hash
+  }
+
+  async create (query: any): Promise<any> {
     try {
-      delete query.id
+      query.id = this.hashData(query)
       const datasource = await this.connection()
       const dataRepository = datasource.getRepository(WebhookSchema)
       const saved = await dataRepository.insert(query)
