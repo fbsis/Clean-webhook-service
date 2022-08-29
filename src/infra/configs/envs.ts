@@ -3,7 +3,7 @@ import { DatabaseSettings } from '@/infra/repository'
 export class EnvAdapter {
   static readonly server = {
     stage: process.env.NODE_ENV ?? 'development',
-    name: process.env.SERVICE_NAME ?? 'logService'
+    name: process.env.SERVICE_NAME ?? 'webhookService'
   }
 
   static readonly http = {
