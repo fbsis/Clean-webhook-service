@@ -1,7 +1,7 @@
 export class WebHookId {
-  constructor (private readonly value: number = 0) {}
+  constructor (private readonly value: string) {}
 
-  toNumber (): number {
+  toString (): string {
     return this.value
   }
 }

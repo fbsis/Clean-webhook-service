@@ -3,12 +3,11 @@ import { DomainException } from '../exceptions'
 export class WebHookSecret {
   constructor (private readonly value: string) {
     if (!value) this.value = ''
-    if (!this.isValid(value)) throw new DomainException('InvalidWebhookSecret')
+    if (!this.isValid()) throw new DomainException('InvalidSecret')
   }
 
-  isValid (value: string): boolean {
-    if (value === '' || value === undefined) return true
-    if (value.length <= 5 || value.length >= 50) return false
+  isValid (): boolean {
+    if (this.value.length > 1024) return false
     return true
   }
 

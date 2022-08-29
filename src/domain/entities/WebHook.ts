@@ -1,3 +1,4 @@
+
 import {
   WebHookAction,
   WebHookId, WebHookInstitutionId, WebHookMethod, WebHookName, WebHookSecret, WebHookStatus, WebHookTimeout, WebHookUrl
@@ -19,7 +20,7 @@ export class WebHook {
 
   toJson (): object {
     return {
-      id: this.id.toNumber(),
+      id: this?.id?.toString(),
       institutionId: this.institutionId.toNumber(),
       action: this.action.toString(),
       name: this.name.toString(),
