@@ -20,11 +20,6 @@ export type DatabaseSettings = {
 export class DatabaseService {
   settings: DatabaseSettings | undefined
 
-  constructor (
-  ) {
-    console.log(EnvAdapter.databaseSettings)
-  }
-
   async connection (): Promise<DataSource> {
     const AppDataSource = new DataSource({
       type: EnvAdapter.databaseSettings.authentication.type,
