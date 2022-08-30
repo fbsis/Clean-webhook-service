@@ -12,8 +12,8 @@ export class WebHookReadController implements Controller {
 
     const webhook = await createWebHookInteractor.execute()
 
-    return HttpResponse.ok({
-      webhook: webhook.map(webhook => webhook.toJson())
-    })
+    return HttpResponse.ok(
+      webhook.map(webhook => webhook.toJson())
+    )
   }
 }
