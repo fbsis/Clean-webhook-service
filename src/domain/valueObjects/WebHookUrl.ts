@@ -9,7 +9,7 @@ export class WebHookUrl {
   isValid (value: string): boolean {
     const regExp =
       // eslint-disable-next-line no-useless-escape
-      /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
+      /(http|ftp|https):\/\/([\w+?\.\w+])+([a-zA-Z0-9\~\!\@\#\$\%\^\&\*\(\)_\-\=\+\\\/\?\.\:\;\'\,]*)?/g
     const pattern = new RegExp(regExp)
     return pattern.test(value)
   }
