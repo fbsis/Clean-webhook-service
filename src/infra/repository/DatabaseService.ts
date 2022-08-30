@@ -59,4 +59,15 @@ export class DatabaseService {
       throw new InfraException('DatabaseServiceErrorCreateException', error)
     }
   }
+
+  async getAll (): Promise<object[]> {
+    try {
+      const datasource = await this.connection()
+      const dataRepository = datasource.getRepository(WebhookSchema)
+      const returnedData = await dataRepository.find()
+      return returnedData
+    } catch (error) {
+      throw new InfraException('DatabaseServiceErrorCreateException', error)
+    }
+  }
 }

@@ -15,9 +15,9 @@ export class WebhookSchema {
   @Index()
   id: string
 
-  @Column('bigint')
+  @Column('tinyint')
   @Index()
-  institutionId: string
+  institutionId: number
 
   @Column('varchar')
   @Index()
@@ -36,7 +36,7 @@ export class WebhookSchema {
   secret: string
 
   @Column('tinyint')
-  timeout: string
+  timeout: number
 
   @Column('boolean')
   status: boolean
