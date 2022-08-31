@@ -17,7 +17,6 @@ export class WebHookAction {
   }
 
   isValid (value: string): boolean {
-    console.log('WebHookAction', this.possibleValues.find(e => value))
     if (!this.possibleValues.find(e => value)) return false
     return true
   }
