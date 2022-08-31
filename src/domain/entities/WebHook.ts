@@ -7,28 +7,28 @@ import {
 export class WebHook {
   constructor (
     private readonly id: WebHookId,
-    private readonly institutionId: WebHookInstitutionId,
-    private readonly action: WebHookAction,
-    private readonly name: WebHookName,
-    private readonly method: WebHookMethod,
-    private readonly url: WebHookUrl,
-    private readonly secret: WebHookSecret,
-    private readonly timeout: WebHookTimeout,
-    private readonly status: WebHookStatus
+    private readonly institutionId: WebHookInstitutionId | undefined,
+    private readonly action: WebHookAction | undefined,
+    private readonly name: WebHookName | undefined,
+    private readonly method: WebHookMethod | undefined,
+    private readonly url: WebHookUrl | undefined,
+    private readonly secret: WebHookSecret | undefined,
+    private readonly timeout: WebHookTimeout | undefined,
+    private readonly status: WebHookStatus | undefined
 
   ) {}
 
   toJson (): object {
     return {
       id: this?.id?.toString(),
-      institutionId: this.institutionId.toNumber(),
-      action: this.action.toString(),
-      name: this.name.toString(),
-      method: this.method.toString(),
-      url: this.url.toString(),
-      secret: this.secret.toString(),
-      timeout: this.timeout.toNumber(),
-      status: this.status.toBoolean()
+      institutionId: this?.institutionId?.toNumber(),
+      action: this?.action?.toString(),
+      name: this?.name?.toString(),
+      method: this?.method?.toString(),
+      url: this?.url?.toString(),
+      secret: this?.secret?.toString(),
+      timeout: this?.timeout?.toNumber(),
+      status: this?.status?.toBoolean()
     }
   }
 }
