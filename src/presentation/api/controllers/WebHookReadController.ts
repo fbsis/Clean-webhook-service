@@ -6,14 +6,14 @@ import { WebhookQueryRepository } from '@/infra/repository/WebhookQueryRepositor
 export class WebHookReadController implements Controller {
   async handle (_: any): Promise<HttpResponse> {
     const webHookQueryRepo = new WebhookQueryRepository()
-    const createWebHookInteractor = new ReadWebHookInteractor(
+    const readWebHookInteractor = new ReadWebHookInteractor(
       webHookQueryRepo
     )
 
-    const webhook = await createWebHookInteractor.execute()
+    const webhook = await readWebHookInteractor.execute()
 
     return HttpResponse.ok(
-      webhook.map(webhook => webhook.toJson())
+      webhook.map((webhook: { toJson: () => any }) => webhook.toJson())
     )
   }
 }
