@@ -7,4 +7,9 @@ export class WebhookCommandRepository implements IWebHookCommandRepository {
     const database = new DatabaseService()
     await database.create(webhook.toJson())
   }
+
+  async update (webhook: WebHook): Promise<void> {
+    const database = new DatabaseService()
+    await database.update(webhook.toJson())
+  }
 }

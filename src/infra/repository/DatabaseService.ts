@@ -62,7 +62,20 @@ export class DatabaseService {
       const returnedData = await dataRepository.find()
       return returnedData
     } catch (error) {
-      throw new InfraException('DatabaseServiceErrorCreateException', error)
+      throw new InfraException('DatabaseServiceErrorGetAllException', error)
+    }
+  }
+
+  async update (domainToUpdate: any): Promise<void> {
+    try {
+      const datasource = await this.connection()
+      const dataRepository = datasource.getRepository(WebhookSchema)
+      let dataToUpdate = await dataRepository.findOneBy({ id: domainToUpdate.id })
+      dataToUpdate = { ...domainToUpdate }
+
+      await dataRepository.save(dataToUpdate ?? {})
+    } catch (error) {
+      throw new InfraException('DatabaseServiceErrorGetAllException', error)
     }
   }
 }

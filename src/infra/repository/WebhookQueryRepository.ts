@@ -7,6 +7,7 @@ export class WebhookQueryRepository implements IWebHookQueryRepository {
   async getAll (): Promise<WebHook[]> {
     const database = new DatabaseService()
     const webhookData: any[] = await database.getAll()
+
     return webhookData.map(webhook => new WebHook(
       new WebHookId(webhook.id),
       new WebHookInstitutionId(webhook.institutionId),
