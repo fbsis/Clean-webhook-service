@@ -74,7 +74,7 @@ export class DatabaseService {
       const dataRepository = datasource.getRepository(WebhookSchema)
       return await dataRepository.findOneBy({ id })
     } catch (error) {
-      throw new InfraException('DatabaseServiceErrorGetAllException', error)
+      throw new InfraException('DatabaseServiceErrorFindOneByIdException', error)
     }
   }
 
@@ -98,7 +98,7 @@ export class DatabaseService {
     const findToDelete = await this.findOneById({ id })
     if (!findToDelete) throw new InfraNotFoundException('Register do not exists')
     await dataRepository.delete({ id: id }).catch(error => {
-      throw new InfraException('DatabaseServiceErrorUpdateException', error)
+      throw new InfraException('DatabaseServiceErrorDeleteException', error)
     })
   }
 }
