@@ -1,12 +1,12 @@
-import { IWebHookQueryRepository } from '@/domain/protocols'
+import { IWebHookCommandRepository } from '@/domain/protocols'
 import { WebHook } from '../entities'
 
-export class ReadWebHookInteractor {
+export class UpdateWebHookInteractor {
   constructor (
-    private readonly webhookQueryRepo: IWebHookQueryRepository
+    private readonly webhookCommandRepo: IWebHookCommandRepository
   ) {}
 
-  async execute (): Promise<WebHook[]> {
-    return await this.webhookQueryRepo.getAll()
+  async execute (webhook: WebHook): Promise<void> {
+    await this.webhookCommandRepo.update(webhook)
   }
 }
