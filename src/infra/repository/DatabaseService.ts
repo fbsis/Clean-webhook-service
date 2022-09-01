@@ -3,7 +3,7 @@ import 'reflect-metadata'
 import { DataSource } from 'typeorm'
 import { EnvAdapter } from '@/infra/configs/envs'
 import { WebhookSchema } from '@/infra/repository'
-import { InfraException } from '../exception'
+import { InfraException, InfraNotFoundException } from '../exception'
 import crypto from 'crypto'
 
 export type DatabaseSettings = {
@@ -34,7 +34,9 @@ export class DatabaseService {
     })
 
     await AppDataSource.initialize()
-      .catch((error) => console.log(error))
+      .catch((error) => {
+        throw new InfraException('DatabaseServiceErrorInitializeException', error)
+      })
     return AppDataSource
   }
 
