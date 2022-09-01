@@ -66,16 +66,37 @@ export class DatabaseService {
     }
   }
 
+  async findOneById (id: any): Promise<object | null> {
+    try {
+      const datasource = await this.connection()
+      const dataRepository = datasource.getRepository(WebhookSchema)
+      return await dataRepository.findOneBy({ id })
+    } catch (error) {
+      throw new InfraException('DatabaseServiceErrorGetAllException', error)
+    }
+  }
+
   async update (domainToUpdate: any): Promise<void> {
     try {
       const datasource = await this.connection()
       const dataRepository = datasource.getRepository(WebhookSchema)
       let dataToUpdate = await dataRepository.findOneBy({ id: domainToUpdate.id })
-      dataToUpdate = { ...domainToUpdate }
+      if (!dataToUpdate) throw new InfraNotFoundException('Register do not exists')
 
+      dataToUpdate = { ...domainToUpdate }
       await dataRepository.save(dataToUpdate ?? {})
     } catch (error) {
-      throw new InfraException('DatabaseServiceErrorGetAllException', error)
+      throw new InfraException('DatabaseServiceErrorUpdateException', error)
     }
+  }
+
+  async delete (id: any): Promise<void> {
+    const datasource = await this.connection()
+    const dataRepository = datasource.getRepository(WebhookSchema)
+    const findToDelete = await this.findOneById({ id })
+    if (!findToDelete) throw new InfraNotFoundException('Register do not exists')
+    await dataRepository.delete({ id: id }).catch(error => {
+      throw new InfraException('DatabaseServiceErrorUpdateException', error)
+    })
   }
 }
