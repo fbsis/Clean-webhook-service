@@ -13,6 +13,7 @@ export default class ErrorHandlerMiddleware {
       const isStaff = EnvAdapter.staffProxies.includes(ipAdress as string)
 
       if (stack.includes('DomainException')) status = 400
+      if (stack.includes('InfraDoNotExistsException')) status = 404
 
       let exceptionDetails = message.substr(0, 150)
 
