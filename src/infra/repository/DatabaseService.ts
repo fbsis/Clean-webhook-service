@@ -68,34 +68,33 @@ export class DatabaseService {
     }
   }
 
-  async findOneById (id: any): Promise<object | null> {
+  async findOneBy (query: any): Promise<object | null> {
     try {
       const datasource = await this.connection()
       const dataRepository = datasource.getRepository(WebhookSchema)
-      return await dataRepository.findOneBy({ id })
+      const toFind = await dataRepository.findOneBy(query)
+      return toFind
     } catch (error) {
       throw new InfraException('DatabaseServiceErrorFindOneByIdException', error)
     }
   }
 
   async update (domainToUpdate: any): Promise<void> {
-    try {
-      const datasource = await this.connection()
-      const dataRepository = datasource.getRepository(WebhookSchema)
-      let dataToUpdate = await dataRepository.findOneBy({ id: domainToUpdate.id })
-      if (!dataToUpdate) throw new InfraNotFoundException('Register do not exists')
+    const datasource = await this.connection()
+    const dataRepository = datasource.getRepository(WebhookSchema)
+    let dataToUpdate = await dataRepository.findOneBy({ id: domainToUpdate.id })
+    if (!dataToUpdate) throw new InfraNotFoundException('Register do not exists')
 
-      dataToUpdate = { ...domainToUpdate }
-      await dataRepository.save(dataToUpdate ?? {})
-    } catch (error) {
-      throw new InfraException('DatabaseServiceErrorUpdateException', error)
-    }
+    dataToUpdate = { ...domainToUpdate }
+    await dataRepository.save(dataToUpdate ?? {}).catch(error => {
+      throw new InfraException('DatabaseServiceErrorDeleteException', error)
+    })
   }
 
   async delete (id: any): Promise<void> {
     const datasource = await this.connection()
     const dataRepository = datasource.getRepository(WebhookSchema)
-    const findToDelete = await this.findOneById({ id })
+    const findToDelete = await this.findOneBy({ id: id })
     if (!findToDelete) throw new InfraNotFoundException('Register do not exists')
     await dataRepository.delete({ id: id }).catch(error => {
       throw new InfraException('DatabaseServiceErrorDeleteException', error)
