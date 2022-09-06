@@ -8,9 +8,9 @@ export default class ErrorHandlerMiddleware {
       let status = httpResponse?.statusCode || 500
       const stack = errorInfo.stack
       const message = errorInfo.message
-      const ipAdress = IpAddressDiscovery.get(request)
+      const ipAddress = IpAddressDiscovery.get(request)
 
-      const isStaff = EnvAdapter.staffProxies.includes(ipAdress as string)
+      const isStaff = EnvAdapter.staffProxies.includes(ipAddress as string)
 
       if (stack.includes('DomainException')) status = 400
       if (stack.includes('InfraDoNotExistsException')) status = 404
