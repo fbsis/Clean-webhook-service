@@ -83,7 +83,7 @@ export class DatabaseService {
     const datasource = await this.connection()
     const dataRepository = datasource.getRepository(WebhookSchema)
     let dataToUpdate = await dataRepository.findOneBy({ id: domainToUpdate.id })
-    if (!dataToUpdate) throw new InfraNotFoundException('Register do not exists')
+    if (!dataToUpdate) throw new InfraNotFoundException('RegisterNotFound')
 
     dataToUpdate = { ...domainToUpdate }
     await dataRepository.save(dataToUpdate ?? {}).catch(error => {
@@ -95,7 +95,7 @@ export class DatabaseService {
     const datasource = await this.connection()
     const dataRepository = datasource.getRepository(WebhookSchema)
     const findToDelete = await this.findOneBy({ id: id })
-    if (!findToDelete) throw new InfraNotFoundException('Register do not exists')
+    if (!findToDelete) throw new InfraNotFoundException('RegisterNotFound')
     await dataRepository.delete({ id: id }).catch(error => {
       throw new InfraException('DatabaseServiceErrorDeleteException', error)
     })
