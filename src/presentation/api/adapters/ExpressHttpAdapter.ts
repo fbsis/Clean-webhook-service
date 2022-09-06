@@ -47,6 +47,7 @@ export class ExpressHttpAdapter implements HttpServer {
     this.app.use(express.urlencoded({ extended: true }))
     this.app.use(xss())
     this.app.use(hpp())
+    this.app.set('trust proxy', true)
   }
 
   private healthCheck (): RequestHandler {
