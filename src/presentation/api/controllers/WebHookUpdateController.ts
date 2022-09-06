@@ -2,7 +2,7 @@ import { Controller } from '@/presentation/api/protocols'
 import { HttpResponse } from '@/presentation/api/helpers'
 import { UpdateWebHookInteractor } from '@/domain/usecases'
 import { WebHookAction, WebHookId, WebHookInstitutionId, WebHookMethod, WebHookName, WebHookSecret, WebHookStatus, WebHookTimeout, WebHookUrl } from '@/domain/valueObjects'
-import { WebHook } from '@/domain/entities'
+import { WebHookDTO } from '@/domain/entities'
 import { WebhookCommandRepository } from '@/infra/repository'
 
 export class WebHookUpdateController implements Controller {
@@ -26,7 +26,7 @@ export class WebHookUpdateController implements Controller {
     if (request.timeout) timeout = new WebHookTimeout(request.timeout)
     if (request.status) status = new WebHookStatus(request.status)
 
-    const webhook = new WebHook(
+    const webhook = new WebHookDTO(
       id,
       institutionId,
       action,
