@@ -1,7 +1,7 @@
 import { Controller } from '@/presentation/api/protocols'
 import { RequestHandler, Router } from 'express'
 import { IpAddressDiscovery } from './helpers'
-import { WebHookCreateController, WebHookDeleteController, WebHookReadController, WebHookUpdateController } from '@/presentation/api/controllers'
+import { WebHookActionController, WebHookCreateController, WebHookDeleteController, WebHookReadController, WebHookUpdateController } from '@/presentation/api/controllers'
 
 export class ExpressRouter {
   readonly router: Router
@@ -17,6 +17,7 @@ export class ExpressRouter {
     this.router.get('/v3/webhook', this.adaptController(new WebHookReadController()))
     this.router.put('/v3/webhook/:id', this.adaptController(new WebHookUpdateController()))
     this.router.delete('/v3/webhook/:id', this.adaptController(new WebHookDeleteController()))
+    this.router.post('/v3/webhook/action/', this.adaptController(new WebHookActionController()))
   }
 
   private readonly adaptController = (controller: Controller): RequestHandler => {
