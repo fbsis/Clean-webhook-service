@@ -19,6 +19,26 @@ export class WebHook implements IwebHook {
 
   ) {}
 
+  getUrl (): string {
+    return this.url.toString()
+  }
+
+  getAction (): string {
+    return this.action.toString()
+  }
+
+  getMethod (): string {
+    return this.method.toString()
+  }
+
+  getSecret (): string {
+    return this.secret.toString()
+  }
+
+  getTimeout (): number {
+    return this.timeout.toNumber()
+  }
+
   toJson (): object {
     return {
       id: this.id.toString(),
