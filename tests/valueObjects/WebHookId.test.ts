@@ -4,13 +4,7 @@ import { WebHookId } from '@/domain/valueObjects'
 
 describe('WebHookId Value object', () => {
   const valueToBeValid = [
-    '65806832015',
-    '17174724000',
-    '71483983048',
-    '77945793000146',
-    '97990755000112',
-    '31910744000177',
-    'WebHookId'
+    '701d446bb0211bb9d9c5cc240c50ebef'
   ]
 
   it('should not throw a error on blank', async () => {
