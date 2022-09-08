@@ -14,6 +14,8 @@ export default class ErrorHandlerMiddleware {
 
       if (stack.includes('DomainException')) status = 400
       if (stack.includes('InfraDoNotExistsException')) status = 404
+      if (stack.includes('HttpServiceTimeoutConfigureException')) status = 504
+      if (stack.includes('HttpServiceResponseUnavailableException')) status = 503
 
       let exceptionDetails = message.substr(0, 150)
 
