@@ -68,7 +68,7 @@ export class DatabaseService {
     }
   }
 
-  async findOneBy (query: any): Promise<object | null> {
+  async findOneBy (query: any): Promise<WebhookSchema | null> {
     try {
       const datasource = await this.connection()
       const dataRepository = datasource.getRepository(WebhookSchema)
