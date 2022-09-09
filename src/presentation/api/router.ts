@@ -17,7 +17,7 @@ export class ExpressRouter {
     this.router.get('/v3/webhook', this.adaptController(new WebHookReadController()))
     this.router.put('/v3/webhook/:id', this.adaptController(new WebHookUpdateController()))
     this.router.delete('/v3/webhook/:id', this.adaptController(new WebHookDeleteController()))
-    this.router.post('/v3/webhook/action/', this.adaptController(new WebHookActionController()))
+    this.router.post('/v3/webhook/action', this.adaptController(new WebHookActionController()))
   }
 
   private readonly adaptController = (controller: Controller): RequestHandler => {
