@@ -1,6 +1,6 @@
 import { WebHook } from '@/domain/entities'
 import { IWebHookQueryRepository } from '@/domain/protocols'
-import { WebHookId, WebHookInstitutionId, WebHookAction, WebHookName, WebHookMethod, WebHookUrl, WebHookSecret, WebHookTimeout, WebHookStatus } from '@/domain/valueObjects'
+import { WebHookId, WebHookInstitutionId, WebHookAction, WebHookName, WebHookMethod, WebHookUrl, WebHookSecret, WebHookTimeout, WebHookStatus, WebHookPayload } from '@/domain/valueObjects'
 import { DatabaseService, HttpService } from '@/infra/repository'
 import { InfraNotFoundException } from '../exception'
 
@@ -22,7 +22,7 @@ export class WebhookQueryRepository implements IWebHookQueryRepository {
     ))
   }
 
-  async action (institutionId: WebHookInstitutionId, action: WebHookAction): Promise<object> {
+  async action (institutionId: WebHookInstitutionId, action: WebHookAction, payload: WebHookPayload): Promise<object> {
     const database = new DatabaseService()
     const actionToDo = await database.findOneBy({ institutionId: institutionId.toNumber(), action: action.toString() })
     if (!actionToDo) throw new InfraNotFoundException('doNotExistsInstitutionIdOrAction')
@@ -39,7 +39,7 @@ export class WebhookQueryRepository implements IWebHookQueryRepository {
       new WebHookStatus(actionToDo.status)
     )
     const httpService = new HttpService()
-    const httpResponse = await httpService.call(webhook)
+    const httpResponse = await httpService.call(webhook, payload)
 
     return httpResponse
   }
