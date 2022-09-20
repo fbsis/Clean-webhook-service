@@ -4,6 +4,7 @@ import { Controller } from '@/presentation/api/protocols'
 import { HttpResponse } from '@/presentation/api/helpers'
 import { WebhookCommandRepository } from '@/infra/repository'
 import { CreateWebHookInteractor } from '@/domain/usecases'
+import { LogService } from '@/infra/repository/LogService'
 
 export class WebHookCreateController implements Controller {
   async handle (request: any): Promise<HttpResponse> {
@@ -34,6 +35,7 @@ export class WebHookCreateController implements Controller {
       webHookCommandRepo
     )
     await createWebHookInteractor.execute(webhook)
+    void LogService.entry('Create', request)
 
     return HttpResponse.created()
   }

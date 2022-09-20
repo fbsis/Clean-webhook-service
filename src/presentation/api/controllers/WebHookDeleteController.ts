@@ -3,6 +3,7 @@ import { HttpResponse } from '@/presentation/api/helpers'
 import { DeleteWebHookInteractor } from '@/domain/usecases'
 import { WebHookId } from '@/domain/valueObjects'
 import { WebhookCommandRepository } from '@/infra/repository'
+import { LogService } from '@/infra/repository/LogService'
 
 export class WebHookDeleteController implements Controller {
   async handle (request: any): Promise<HttpResponse> {
@@ -13,6 +14,7 @@ export class WebHookDeleteController implements Controller {
       webHookCommandRepo
     )
 
+    void LogService.entry('Delete, request')
     await deleteWebHookInteractor.execute(id)
 
     return HttpResponse.ok({})

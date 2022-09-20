@@ -4,6 +4,7 @@ import { UpdateWebHookInteractor } from '@/domain/usecases'
 import { WebHookAction, WebHookId, WebHookInstitutionId, WebHookMethod, WebHookName, WebHookSecret, WebHookStatus, WebHookTimeout, WebHookUrl } from '@/domain/valueObjects'
 import { WebHookDTO } from '@/domain/entities'
 import { WebhookCommandRepository } from '@/infra/repository'
+import { LogService } from '@/infra/repository/LogService'
 
 export class WebHookUpdateController implements Controller {
   async handle (request: any): Promise<HttpResponse> {
@@ -37,6 +38,8 @@ export class WebHookUpdateController implements Controller {
       timeout,
       status
     )
+
+    void LogService.entry('Update, request')
 
     const webHookCommandRepo = new WebhookCommandRepository()
     const updateWebHookInteractor = new UpdateWebHookInteractor(

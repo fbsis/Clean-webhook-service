@@ -3,7 +3,7 @@ import axios from 'axios'
 import { EnvAdapter } from '../configs/envs'
 
 export class LogService {
-  static async entry (action: string, content: string | any): Promise<any> {
+  static async entry (action: string, content?: string | any, userId?: string): Promise<any> {
     try {
       const actionToInput = action.replace(/\?.*$/, '')
       let contentToinput = content
@@ -13,6 +13,8 @@ export class LogService {
         url: EnvAdapter.logService,
         method: 'post',
         data: {
+          serviceName: EnvAdapter.name,
+          userId: userId,
           action: actionToInput,
           content: contentToinput
         }

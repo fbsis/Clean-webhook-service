@@ -2,6 +2,7 @@ import { Controller } from '@/presentation/api/protocols'
 import { HttpResponse } from '@/presentation/api/helpers'
 import { ReadWebHookInteractor } from '@/domain/usecases'
 import { WebhookQueryRepository } from '@/infra/repository/WebhookQueryRepository'
+import { LogService } from '@/infra/repository/LogService'
 
 export class WebHookReadController implements Controller {
   async handle (_: any): Promise<HttpResponse> {
@@ -11,6 +12,7 @@ export class WebHookReadController implements Controller {
     )
 
     const webhook = await readWebHookInteractor.execute()
+    void LogService.entry('Read')
 
     return HttpResponse.ok(
       webhook.map((webhook: { toJson: () => any }) => webhook.toJson())
