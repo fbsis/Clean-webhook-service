@@ -1,5 +1,3 @@
-// implementa o padrtão do webhook
-
-export interface IwebHook {
+export interface iwebHook {
   toJson: () => object
 }
