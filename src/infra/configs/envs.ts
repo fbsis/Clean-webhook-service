@@ -7,7 +7,7 @@ export class EnvAdapter {
   }
 
   static readonly http = {
-    listenPort: Number(process.env.PORT ?? 3000)
+    listenPort: Number(process.env.PORT ?? 3001)
   }
 
   static readonly databaseSettings: DatabaseSettings = {
@@ -22,4 +22,6 @@ export class EnvAdapter {
   }
 
   static readonly staffProxies = process.env.STAFF_PROXIES ?? ['::1']
+
+  static readonly logService = process.env.LOG_SERVICE ?? 'http://localhost:3000'
 }
