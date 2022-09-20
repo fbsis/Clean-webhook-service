@@ -3,7 +3,7 @@ import { DomainException } from '../exceptions'
 
 export class WebHookPayload {
   constructor (private readonly value: object) {
-    if (!value && value === undefined && !this.isValid(value)) throw new DomainException('InvalidWebhookAction')
+    if (!value && !this.isValid(value)) throw new DomainException('InvalidWebhookAction')
   }
 
   isValid (value: object): boolean {

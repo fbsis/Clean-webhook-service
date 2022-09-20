@@ -13,7 +13,8 @@ export class WebHookAction {
   ]
 
   constructor (private readonly value: string) {
-    if (!value && value === undefined && !this.isValid(value)) throw new DomainException('InvalidWebhookAction')
+    if (!value) this.value = ''
+    if (!value && !this.isValid(value)) throw new DomainException('InvalidWebhookAction')
   }
 
   isValid (value: string): boolean {

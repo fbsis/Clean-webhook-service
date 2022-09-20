@@ -11,6 +11,7 @@ export class WebHookMethod {
 
   constructor (private readonly value: string) {
     if (!value) this.value = 'post'
+    this.value = this.value.toLowerCase()
     if (!this.isValid(this.value)) throw new DomainException('InvalidWebhookMethod')
   }
 

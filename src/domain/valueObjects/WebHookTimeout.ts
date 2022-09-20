@@ -1,7 +1,7 @@
 import { DomainException } from '../exceptions'
 
 export class WebHookTimeout {
-  limitofTwoMinutes = 60 * 2
+  maxTimeoutLimit = 60 * 2
   defaultLimit = 15
 
   constructor (private readonly value: number) {
@@ -10,7 +10,7 @@ export class WebHookTimeout {
   }
 
   isValid (value: number): boolean {
-    if ((value <= 0 || value >= this.limitofTwoMinutes)) return false
+    if ((value <= 0 || value >= this.maxTimeoutLimit)) return false
     return true
   }
 

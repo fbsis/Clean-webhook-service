@@ -6,7 +6,7 @@ export class WebHookId {
     if (!value || !this.isValid(value)) throw new DomainException('InvalidWebhookId')
   }
 
-  toString (): string { // verificar se o sha está até 512 chars ao criar o hash
+  toString (): string {
     return this.value
   }
 
