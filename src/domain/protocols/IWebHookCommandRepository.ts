@@ -1,8 +1,8 @@
 import { WebHookId } from '../valueObjects'
-import { IwebHook } from './IwebHook'
+import { iwebHook } from './IwebHook'
 
 export interface IWebHookCommandRepository {
-  create: (webhook: IwebHook) => Promise<void>
-  update: (webhook: IwebHook) => Promise<void>
+  create: (webhook: WebHookId) => Promise<void>
+  update: (webhook: iwebHook) => Promise<void>
   delete: (id: WebHookId) => Promise<void>
 }
