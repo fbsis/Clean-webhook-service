@@ -1,4 +1,3 @@
-import { InfraException } from '../exception'
 import axios from 'axios'
 import { EnvAdapter } from '../configs/envs'
 
@@ -22,7 +21,7 @@ export class LogService {
 
       return httpResponse.data
     } catch (error: any) {
-      throw new InfraException('LogServiceException', error)
+      console.log(error)
     }
   }
 }
