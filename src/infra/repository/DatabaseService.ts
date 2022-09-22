@@ -30,7 +30,7 @@ export class DatabaseService {
       database: EnvAdapter.databaseSettings.authentication.database,
       entities: [WebhookSchema],
       synchronize: true,
-      logging: true
+      logging: false
     })
 
     await AppDataSource.initialize()
