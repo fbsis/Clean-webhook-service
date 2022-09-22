@@ -29,7 +29,11 @@ export class ExpressRouter {
           ...request.query,
           accessToken: request.headers.authorization,
           ipAddress: IpAddressDiscovery.get(request),
-          userAgent: request.headers['user-agent']
+          userAgent: request.headers['user-agent'],
+          http: {
+            method: request.method,
+            route: request.method
+          }
         }
         const httpResponse = await controller.handle(httpRequest)
         response.status(httpResponse.statusCode).json({
