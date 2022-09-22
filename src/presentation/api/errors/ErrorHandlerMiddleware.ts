@@ -1,6 +1,7 @@
 import { Response } from 'express'
 import { EnvAdapter } from '@/infra/configs/envs'
 import { IpAddressDiscovery } from '@/presentation/api/helpers'
+import { LogService } from '@/infra/repository/LogService'
 export default class ErrorHandlerMiddleware {
   handler (errorInfo: any, request: any, response: Response): void {
     try {
@@ -27,6 +28,7 @@ export default class ErrorHandlerMiddleware {
       }
 
       console.log(exceptionDetailsForStaff)
+      void LogService.entry('ErrorHandler', exceptionDetailsForStaff)
 
       if (isStaff) {
         exceptionDetails = exceptionDetailsForStaff
