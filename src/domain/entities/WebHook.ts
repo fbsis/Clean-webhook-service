@@ -3,9 +3,9 @@ import {
   WebHookAction,
   WebHookId, WebHookInstitutionId, WebHookMethod, WebHookName, WebHookSecret, WebHookStatus, WebHookTimeout, WebHookUrl
 } from '@/domain/valueObjects'
-import { IwebHook } from '../protocols'
+import { iwebHook } from '../protocols/iwebHook'
 
-export class WebHook implements IwebHook {
+export class WebHook implements iwebHook {
   constructor (
     private readonly id: WebHookId,
     private readonly institutionId: WebHookInstitutionId,

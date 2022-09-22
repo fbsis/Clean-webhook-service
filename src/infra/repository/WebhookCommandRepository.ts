@@ -1,14 +1,15 @@
-import { IwebHook, IWebHookCommandRepository } from '@/domain/protocols'
+import { IWebHookCommandRepository } from '@/domain/protocols'
+import { iwebHook } from '@/domain/protocols/iwebHook'
 import { WebHookId } from '@/domain/valueObjects'
 import { DatabaseService } from '@/infra/repository'
 
 export class WebhookCommandRepository implements IWebHookCommandRepository {
-  async create (webhook: IwebHook): Promise<void> {
+  async create (webhook: iwebHook): Promise<void> {
     const database = new DatabaseService()
     await database.create(webhook.toJson())
   }
 
-  async update (webhook: IwebHook): Promise<void> {
+  async update (webhook: iwebHook): Promise<void> {
     const database = new DatabaseService()
     await database.update(webhook.toJson())
   }

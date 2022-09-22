@@ -1,12 +1,12 @@
 
 // passando registro de um lado para o outro
+import { iwebHook } from '@/domain/protocols/iwebHook'
 import {
   WebHookAction,
   WebHookId, WebHookInstitutionId, WebHookMethod, WebHookName, WebHookSecret, WebHookStatus, WebHookTimeout, WebHookUrl
 } from '@/domain/valueObjects'
-import { IwebHook } from '../protocols'
 
-export class WebHookDTO implements IwebHook {
+export class WebHookDTO implements iwebHook {
   constructor (
     private readonly id: WebHookId,
     private readonly institutionId: WebHookInstitutionId | undefined,
