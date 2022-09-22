@@ -16,7 +16,7 @@ jest.spyOn(DatabaseService.prototype, 'getAll').mockReturnValue(Promise.resolve(
   }]
 ))
 
-describe('Webhook create Controller', () => {
+describe('Webhook list Controller', () => {
   const testHelper = new TestHelper()
   const route = '/v3/webhook'
 
