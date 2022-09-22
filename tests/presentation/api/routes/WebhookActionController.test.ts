@@ -38,7 +38,10 @@ describe('Webhook action Controller', () => {
     const response = await testHelper.axiosAPIClient
       .post(route, {
         institutionId: 1,
-        action: 'authentication.pre.sso'
+        action: 'authentication.pre.sso',
+        payload: {
+          teste: 'teste2'
+        }
       })
     expect(response.status).toBe(200)
     expect(response.data).toEqual({
