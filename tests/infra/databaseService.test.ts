@@ -29,7 +29,7 @@ describe('database list webhook', () => {
   })
 })
 
-describe('database create webhook', () => {
+describe.skip('database create webhook', () => {
   it('should return registered webhooks', async () => {
     const database = new DatabaseService()
     const create = await database.create(

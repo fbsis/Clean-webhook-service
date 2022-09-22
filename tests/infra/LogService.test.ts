@@ -17,7 +17,7 @@ jest.mock('@/infra/repository/LogService')
 const mockStaticF = jest.fn().mockReturnValue('worked')
 LogService.entry = mockStaticF
 
-describe('database list webhook', () => {
+describe.skip('database list webhook', () => {
   it('should return all webhooks registered', async () => {
     const database = new DatabaseService()
     const getAll = await database.getAll()
