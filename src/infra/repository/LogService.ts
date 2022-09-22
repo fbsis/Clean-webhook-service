@@ -3,6 +3,10 @@ import { EnvAdapter } from '../configs/envs'
 
 export class LogService {
   static async entry (action: string, content?: string | any, userId?: string): Promise<any> {
+    console.log('EnvAdapter.server.stage', EnvAdapter.server.stage)
+    if (EnvAdapter.server.stage === 'test') {
+      return
+    }
     try {
       const actionToInput = action.replace(/\?.*$/, '')
       let contentToinput = content
