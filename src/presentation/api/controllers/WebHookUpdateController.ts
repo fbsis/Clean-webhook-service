@@ -39,7 +39,7 @@ export class WebHookUpdateController implements Controller {
       status
     )
 
-    void LogService.entry('Update, request')
+    void LogService.entry('Update', request)
 
     const webHookCommandRepo = new WebhookCommandRepository()
     const updateWebHookInteractor = new UpdateWebHookInteractor(

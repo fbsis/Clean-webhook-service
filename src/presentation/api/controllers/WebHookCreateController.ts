@@ -30,12 +30,14 @@ export class WebHookCreateController implements Controller {
       status
     )
 
+    void LogService.entry('pre-create', request)
+
     const webHookCommandRepo = new WebhookCommandRepository()
     const createWebHookInteractor = new CreateWebHookInteractor(
       webHookCommandRepo
     )
     await createWebHookInteractor.execute(webhook)
-    void LogService.entry('Create', request)
+    void LogService.entry('pre-create', request)
 
     return HttpResponse.created()
   }

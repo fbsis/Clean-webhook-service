@@ -14,7 +14,7 @@ export class WebHookDeleteController implements Controller {
       webHookCommandRepo
     )
 
-    void LogService.entry('Delete, request')
+    void LogService.entry('Delete', request)
     await deleteWebHookInteractor.execute(id)
 
     return HttpResponse.ok({})
