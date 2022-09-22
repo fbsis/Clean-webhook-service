@@ -14,10 +14,10 @@ describe('WebHookAction Value object', () => {
     'authentication.failed.login'
   ]
 
-  it('should not throw a error on blank', async () => {
+  it('should throw a error on blank', async () => {
     expect(() =>
       new WebHookAction('')
-    ).not.toThrow()
+    ).toThrow()
   })
 
   it('should not throw a error on other values', async () => {

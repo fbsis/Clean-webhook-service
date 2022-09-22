@@ -10,10 +10,10 @@ describe('WebHookInstitutionId Value object', () => {
     71483983048
   ]
 
-  it('should not throw a error on blank', async () => {
+  it('should throw a error on blank', async () => {
     expect(() =>
       new WebHookInstitutionId(0)
-    ).not.toThrow()
+    ).toThrow()
   })
 
   valueToBeValid.map(e => {
