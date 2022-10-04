@@ -3,7 +3,7 @@ import { HttpResponse } from '@/presentation/api/helpers'
 import { WebHookAction, WebHookInstitutionId, WebHookPayload } from '@/domain/valueObjects'
 import { WebhookQueryRepository } from '@/infra/repository/WebhookQueryRepository'
 import { LogService } from '@/infra/repository/LogService'
-import { TrigerHookActionInteractor } from '@/domain/usecases'
+import { TriggerWebhookActionInteractor } from '@/domain/usecases'
 
 export class WebHookActionController implements Controller {
   async handle (request: any): Promise<HttpResponse> {
@@ -12,13 +12,13 @@ export class WebHookActionController implements Controller {
     const payload = new WebHookPayload(request.payload)
 
     const webHookQueryRepo = new WebhookQueryRepository()
-    const actionWebHookInteractor = new TrigerHookActionInteractor(
+    const actionWebHookInteractor = new TriggerWebhookActionInteractor(
       webHookQueryRepo
     )
 
-    void LogService.entry('Action start, request')
+    void LogService.entry('Action start', request)
     const response = await actionWebHookInteractor.execute(institutionId, action, payload)
-    void LogService.entry('Action end, request')
+    void LogService.entry('Action end', request)
 
     return HttpResponse.ok({ ...response })
   }

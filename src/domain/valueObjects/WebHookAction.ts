@@ -14,11 +14,11 @@ export class WebHookAction {
 
   constructor (private readonly value: string) {
     if (!value) this.value = ''
-    if (!value && !this.isValid(value)) throw new DomainException('InvalidWebhookAction')
+    if (!this.isValid()) throw new DomainException('InvalidWebhookAction')
   }
 
-  isValid (value: string): boolean {
-    if (!this.possibleValues.find(e => value)) return false
+  isValid (): boolean {
+    if (!this.possibleValues.find(e => this.value)) return false
     return true
   }
 

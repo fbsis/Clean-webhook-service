@@ -21,7 +21,7 @@ export class EnvAdapter {
     }
   }
 
-  static readonly staffProxies = process.env.STAFF_PROXIES ?? ['::1']
+  static readonly staffProxies = process.env.STAFF_PROXIES ? process.env.STAFF_PROXIES.split(' ') : ['::1']
 
   static readonly logService = process.env.LOG_SERVICE ?? 'http://localhost:3000'
 }

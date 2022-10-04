@@ -1,7 +1,7 @@
 import { IWebHookQueryRepository } from '@/domain/protocols'
 import { WebHookAction, WebHookInstitutionId, WebHookPayload } from '../valueObjects'
 
-export class TrigerHookActionInteractor {
+export class TriggerWebhookActionInteractor {
   constructor (
     private readonly webhookQueryRepo: IWebHookQueryRepository
   ) {}

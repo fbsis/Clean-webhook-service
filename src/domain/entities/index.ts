@@ -1,2 +1,2 @@
 export * from './WebHook'
-export * from '../../DTO/WebHookDTO'
+export * from '../dto/WebHookDTO'
