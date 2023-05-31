@@ -1,5 +1,5 @@
 # Introduction
-Webhook Service
+Welcome to the Webhook Service! This service provides functionality for managing webhooks.
 
 # Getting Started
 
